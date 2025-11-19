@@ -1,6 +1,8 @@
 import icons from '@/constants/icons';
 import images from '@/constants/images';
-import { login,logout } from '@/lib/appwrite';
+import { login, logout } from '@/lib/appwrite';
+import { useGlobalContext } from '@/lib/global-provider';
+import { Redirect } from 'expo-router';
 import React from 'react';
 import {
   Alert,
@@ -12,12 +14,14 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const signin = () => {
+const SignIn = () => {
+  const { refetch, loading, isLoggedIn } = useGlobalContext();
+  if (!loading && isLoggedIn) return <Redirect href="/" />;
   const handleLogin = async () => {
     const result = await login();
 
     if (result) {
-      console.log('Login Success');
+      refetch();
     } else {
       Alert.alert('Error', 'Failed to login');
     }
@@ -65,18 +69,18 @@ const signin = () => {
               </Text>
             </View>
           </TouchableOpacity>
-           <TouchableOpacity
-              onPress={handleTestLogout}
-              className="bg-red-500 rounded-full w-full py-3 mt-2"
-            >
-              <Text className="text-white text-center font-rubik-medium">
-                🚪 Test Logout
-              </Text>
-            </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleTestLogout}
+            className="bg-red-500 rounded-full w-full py-3 mt-2"
+          >
+            <Text className="text-white text-center font-rubik-medium">
+              🚪 Test Logout
+            </Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default signin;
+export default SignIn;
