@@ -1,6 +1,6 @@
 import icons from '@/constants/icons';
 import images from '@/constants/images';
-import { login, logout } from '@/lib/appwrite';
+import { login } from '@/lib/appwrite';
 import { useGlobalContext } from '@/lib/global-provider';
 import { Redirect } from 'expo-router';
 import React from 'react';
@@ -26,15 +26,7 @@ const SignIn = () => {
       Alert.alert('Error', 'Failed to login');
     }
   };
-  // 🧪 Bouton de test pour logout
-  const handleTestLogout = async () => {
-    const result = await logout();
-    if (result) {
-      Alert.alert('Success', 'Logged out successfully');
-    } else {
-      Alert.alert('Error', 'Failed to logout');
-    }
-  };
+
   return (
     <SafeAreaView className="bg-white h-full">
       <ScrollView contentContainerClassName="h-full">
@@ -68,14 +60,6 @@ const SignIn = () => {
                 Continue with Google
               </Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleTestLogout}
-            className="bg-red-500 rounded-full w-full py-3 mt-2"
-          >
-            <Text className="text-white text-center font-rubik-medium">
-              🚪 Test Logout
-            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
