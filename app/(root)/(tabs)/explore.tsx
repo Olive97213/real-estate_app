@@ -75,7 +75,6 @@ export default function Explore() {
                 onPress={() => router.back()}
                 className="flex flex-row bg-primary-200 rounded-full size-11 items-center justify-center"
               >
-                {' '}
                 <Image source={icons.backArrow} className="size-9" />
               </TouchableOpacity>
               <Text className="text-base mr-2 text-center font-rubik-medium text-black-300">
@@ -87,7 +86,7 @@ export default function Explore() {
             <View className="mt-5">
               <Filters />
               <Text className="text-xl font-rubik-bold text-black-300 mt-5">
-                Found {properties?.length} Properties
+                Found {properties?.length ?? 0} Properties
               </Text>
             </View>
           </View>

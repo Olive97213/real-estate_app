@@ -1,11 +1,20 @@
+import Property from '@/app/(root)/properties/[id]';
 import icons from '@/constants/icons';
 import images from '@/constants/images';
 import { Models } from 'appwrite';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
+interface Property extends Models.Document {
+  image: string;
+  rating: number;
+  name: string;
+  address: string;
+  price: number;
+}
+
 interface Props {
-  item: Models.Document;
+  item: Property;
   onPress?: () => void;
 }
 
